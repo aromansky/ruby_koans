@@ -14,7 +14,18 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
-  # WRITE THIS CODE
+  sides = [a, b, c].sort
+
+  raise TriangleError, "Стороны должны быть больше 0" if sides.any? { |side| side <= 0 }
+  raise TriangleError, "Неверный треугольник: сумма любых двух сторон должна быть больше третьей стороны" if sides[0] + sides[1] <= sides[2]
+
+  if a == b && b == c
+    :equilateral
+  elsif a == b || b == c || a == c
+    :isosceles
+  else
+    :scalene
+  end
 end
 
 # Error class used in part 2.  No need to change this code.
